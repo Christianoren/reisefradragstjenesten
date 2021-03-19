@@ -49,24 +49,30 @@ export const Reise = ({ id, onChange, type, tittel }) => {
     };
 
     return (
-        <>
-            <h3 style={{ color: '#1362ae' }}>
-                {tittel}
-            </h3>
+        <div className="hr-bottom">
+            <h2>{tittel}</h2>
             <div style={{ minWidth: '100%', height: '30px' }}>{error.message}</div>
-            <div>
-                <label htmlFor={id} style={{ width: '100%' }}>
-                    Kilometer:
-                </label>
-                <input value={state.km} type="number" id={id} name="km" onChange={handleOnChange} />
-            </div>
-
-            <div>
-                <label htmlFor={id}> Antall: </label>
-                <input value={state.antall} type="number" id={id} name="antall" onChange={handleOnChange} />
-            </div>
-
-            <button onClick={handleOnClick}>+</button>
-        </>
+            <label htmlFor={id}> Kilometer:</label>
+            <input
+                value={state.km}
+                className="margin-left margin-right"
+                type="number"
+                id={id}
+                name="km"
+                onChange={handleOnChange}
+            />
+            <label htmlFor={id}> Antall: </label>
+            <input
+                value={state.antall}
+                className="margin-left"
+                type="number"
+                id={id}
+                name="antall"
+                onChange={handleOnChange}
+            />
+            <button type="button" onClick={handleOnClick} className="margin-left">
+                +
+            </button>
+        </div>
     );
 };

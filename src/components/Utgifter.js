@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 export const Utgifter = ({ id, onChange, type, tittel }) => {
     const [state, setState] = useState({
-        utgifterBomFergeEtc: 0
+        utgifterBomFergeEtc: 0,
     });
 
     const [error, setError] = useState({
@@ -10,7 +10,7 @@ export const Utgifter = ({ id, onChange, type, tittel }) => {
     });
 
     const resetState = {
-        utgifterBomFergeEtc: 0
+        utgifterBomFergeEtc: 0,
     };
 
     const resetErrors = {
@@ -43,19 +43,21 @@ export const Utgifter = ({ id, onChange, type, tittel }) => {
     };
 
     return (
-        <>
-            <h3 style={{ color: '#1362ae' }}>
-                {tittel}
-            </h3>
+        <div className="hr-bottom">
+            <h2>{tittel}</h2>
             <div style={{ minWidth: '100%', height: '30px' }}>{error.message}</div>
-            <div>
-                <label htmlFor={id} style={{ width: '100%' }}>
-                Utgifter:
-                </label>
-                <input value={state.utgifterBomFergeEtc} type="number" id={id} name='utgifterBomFergeEtc' onChange={handleOnChange} />
-            </div>
-
-            <button onClick={handleOnClick}>+</button>
-        </>
+            <label htmlFor={id}>Utgifter:</label>
+            <input
+                value={state.utgifterBomFergeEtc}
+                className="margin-left"
+                type="number"
+                id={id}
+                name="utgifterBomFergeEtc"
+                onChange={handleOnChange}
+            />
+            <button type="button" onClick={handleOnClick} className="margin-left">
+                +
+            </button>
+        </div>
     );
 };
