@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const Reise = ({ id, onChange, type }) => {
+export const Reise = ({ id, onChange, type, tittel }) => {
     const [state, setState] = useState({
         km: 0,
         antall: 0,
@@ -50,11 +50,13 @@ export const Reise = ({ id, onChange, type }) => {
 
     return (
         <>
+            <h3 style={{ color: '#1362ae' }}>
+                {tittel}
+            </h3>
             <div style={{ minWidth: '100%', height: '30px' }}>{error.message}</div>
             <div>
                 <label htmlFor={id} style={{ width: '100%' }}>
-                    {' '}
-                    Kilometer:{' '}
+                    Kilometer:
                 </label>
                 <input value={state.km} type="number" id={id} name="km" onChange={handleOnChange} />
             </div>
