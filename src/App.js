@@ -1,25 +1,71 @@
 import React, { useState } from 'react';
 import { Reise } from './components/Reise';
+import { Utgifter } from './components/Utgifter';
 
 function App() {
     const [state, setState] = useState({
-		arbeidsreiser: []
+        arbeidsreiser: [],
+        besoeksreiser: [],
+        utgifterBomFergeEtc: 0,
     });
 
-	const Arbeidsreise = 'arbeidsreise';
-	const Besoeksreise = 'besoeksreise';
+	const resetState = {
+		arbeidsreiser: [],
+        besoeksreiser: [],
+        utgifterBomFergeEtc: 0,
+	};
 
-	const handleOnChangeArbeidsreise = (arbeidsreise, type) => {
-		if (type === Arbeidsreise) {
-			var arbeidsreiserJoined = state.arbeidsreiser;
-			arbeidsreiserJoined.push(arbeidsreise)
-			setState({arbeidsreiser: arbeidsreiserJoined});
-			console.log('Updated App state');
-		}
-	}
+    const testObj = {
+        arbeidsreiser: [
+            { km: 91, antall: 180 },
+            { km: 378, antall: 4 },
+        ],
+        besoeksreiser: [{ km: 580, antall: 4 }],
+        utgifterBomFergeEtc: 4850,
+    };
+
+    const [reisefradrag, setReisefradrag] = useState();
+
+    const Arbeidsreise = 'arbeidsreise';
+    const Besoeksreise = 'besoeksreise';
+    const UtgifterTilBomFergeEtc = 'utgifterBomFergeEtc';
+
+    const handleStateChange = (value, type) => {
+        if (type === Arbeidsreise) {
+            const newState = state.arbeidsreiser;
+            newState.push(value);
+            setState({ ...state, arbeidsreiser: newState });
+            console.log('Updated App state');
+        }
+
+        if (type === Besoeksreise) {
+            const newState = state.besoeksreiser;
+            newState.push(value);
+            setState({ ...state, besoeksreiser: newState });
+            console.log('Updated App state');
+        }
+
+        if (type === UtgifterTilBomFergeEtc) {
+            setState({ ...state, utgifterBomFergeEtc: value.utgifterBomFergeEtc });
+            console.log('Updated App state');
+        }
+    };
+
+    const handleSubmit = async () => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify(state),
+        };
+        const response = await fetch('https://localhost:5001/api/ReiseFradrag', requestOptions);
+        const data = await response.json();
+        setReisefradrag(data.reisefradrag);
+		setState(resetState);
+    };
 
     return (
         <main className="App">
+            <h1>Reisefradragstjenesten</h1>
             <div
                 style={{
                     width: '600px',
@@ -30,12 +76,29 @@ function App() {
                     flexDirection: 'column',
                 }}
             >
-                <h1 style={{ color: '#1362ae' }}>
-                    Legg inn dine arbeidsreiser
-                </h1>
+                <Reise
+                    id={`${Arbeidsreise}Id`}
+                    onChange={handleStateChange}
+                    type={Arbeidsreise}
+                    tittel="Registrer dine arbeidsreiser"
+                />
 
-				<Reise id={`arbeidsreiseId`} onChange={handleOnChangeArbeidsreise} type='arbeidsreise' />
-			</div>
+                <Reise
+                    id={`${Besoeksreise}Id`}
+                    onChange={handleStateChange}
+                    type={Besoeksreise}
+                    tittel="Registrer dine besøksreiser"
+                />
+
+                <Utgifter
+                    id={`${UtgifterTilBomFergeEtc}Id`}
+                    onChange={handleStateChange}
+                    type={UtgifterTilBomFergeEtc}
+                    tittel="Registrer dine bom og ferge utgifter"
+                />
+            </div>
+            <button onClick={handleSubmit}>Send inn</button>
+            {reisefradrag}
         </main>
     );
 }
