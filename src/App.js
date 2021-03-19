@@ -1,26 +1,10 @@
 import React, { useState } from 'react';
+import { Arbeidsreiser } from './components/Arbeidsreiser';
 import { Reise } from './components/Reise';
 import { Utgifter } from './components/Utgifter';
 import './styling/index.css';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(16),
-      height: theme.spacing(16),
-    },
-  },
-}));
-
 
 function App() {
-	const classes = useStyles();
-
     const [state, setState] = useState({
         arbeidsreiser: [],
         besoeksreiser: [],
@@ -86,8 +70,7 @@ function App() {
 
     return (
         <main className="App">
-            <div className={classes.root}>
-				<Paper>
+            <div className="wrapper">
 					<form onSubmit={handleSubmit}>
 						<Reise
 							id={`${Arbeidsreise}Id`}
@@ -113,8 +96,10 @@ function App() {
 							Send inn
 						</button>
 					</form>
-				</Paper>
             </div>
+			<div className="wrapper">
+				<Arbeidsreiser />
+			</div>
             <div className="wrapper reisefradrag">
                 {reisefradrag && (
                     <div>

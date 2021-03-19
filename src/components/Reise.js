@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '25ch',
+        },
+    },
+}));
 
 export const Reise = ({ id, onChange, type, tittel }) => {
+    const classes = useStyles();
+
     const [state, setState] = useState({
         km: 0,
         antall: 0,
@@ -52,27 +65,29 @@ export const Reise = ({ id, onChange, type, tittel }) => {
         <div className="hr-bottom">
             <h2>{tittel}</h2>
             <div style={{ minWidth: '100%', height: '30px' }}>{error.message}</div>
-            <label htmlFor={id}> Kilometer:</label>
-            <input
+            <TextField
+                id="standard-basic"
+                label="Kilometer"
                 value={state.km}
-                className="margin-left margin-right"
                 type="number"
-                id={id}
                 name="km"
                 onChange={handleOnChange}
+                style={{ marginRight: '20px' }}
             />
-            <label htmlFor={id}> Antall: </label>
-            <input
+            <TextField
+                id="standard-basic"
+                label="Antall"
                 value={state.antall}
-                className="margin-left"
                 type="number"
-                id={id}
                 name="antall"
                 onChange={handleOnChange}
             />
-            <button type="button" onClick={handleOnClick} className="margin-left">
-                +
-            </button>
+            <div>
+                <button type="button" onClick={handleOnClick} className="margin-left">
+                    +
+                </button>
+            </div>
+
         </div>
     );
 };
