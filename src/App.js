@@ -2,8 +2,25 @@ import React, { useState } from 'react';
 import { Reise } from './components/Reise';
 import { Utgifter } from './components/Utgifter';
 import './styling/index.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(1),
+      width: theme.spacing(16),
+      height: theme.spacing(16),
+    },
+  },
+}));
+
 
 function App() {
+	const classes = useStyles();
+
     const [state, setState] = useState({
         arbeidsreiser: [],
         besoeksreiser: [],
@@ -69,32 +86,34 @@ function App() {
 
     return (
         <main className="App">
-            <div className="wrapper">
-                <form onSubmit={handleSubmit}>
-                    <Reise
-                        id={`${Arbeidsreise}Id`}
-                        onChange={handleStateChange}
-                        type={Arbeidsreise}
-                        tittel="Arbeidsreiser"
-                    />
+            <div className={classes.root}>
+				<Paper>
+					<form onSubmit={handleSubmit}>
+						<Reise
+							id={`${Arbeidsreise}Id`}
+							onChange={handleStateChange}
+							type={Arbeidsreise}
+							tittel="Arbeidsreiser"
+						/>
 
-                    <Reise
-                        id={`${Besoeksreise}Id`}
-                        onChange={handleStateChange}
-                        type={Besoeksreise}
-                        tittel="Besøksreiser"
-                    />
+						<Reise
+							id={`${Besoeksreise}Id`}
+							onChange={handleStateChange}
+							type={Besoeksreise}
+							tittel="Besøksreiser"
+						/>
 
-                    <Utgifter
-                        id={`${UtgifterTilBomFergeEtc}Id`}
-                        onChange={handleStateChange}
-                        type={UtgifterTilBomFergeEtc}
-                        tittel="Bom og ferge utgifter"
-                    />
-                    <button type="submit" style={{ display: 'flex', margin: '20px auto 20px auto' }}>
-                        Send inn
-                    </button>
-                </form>
+						<Utgifter
+							id={`${UtgifterTilBomFergeEtc}Id`}
+							onChange={handleStateChange}
+							type={UtgifterTilBomFergeEtc}
+							tittel="Bom og ferge utgifter"
+						/>
+						<button type="submit" style={{ display: 'flex', margin: '20px auto 20px auto' }}>
+							Send inn
+						</button>
+					</form>
+				</Paper>
             </div>
             <div className="wrapper reisefradrag">
                 {reisefradrag && (
