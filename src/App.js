@@ -1,48 +1,52 @@
 import React, { useState } from 'react';
-import { Arbeidsreiser } from './components/Arbeidsreiser';
 import { Reise } from './components/Reise';
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
 import { Utgifter } from './components/Utgifter';
 import './styling/index.css';
 
 function App() {
-    const [state, setState] = useState({
-        arbeidsreiser: [],
-        besoeksreiser: [],
-        utgifterBomFergeEtc: 0,
-    });
-
-    const resetState = {
-        arbeidsreiser: [],
-        besoeksreiser: [],
-        utgifterBomFergeEtc: 0,
-    };
-
-    const [reisefradrag, setReisefradrag] = useState();
-
-    const Arbeidsreise = 'arbeidsreise';
-    const Besoeksreise = 'besoeksreise';
+    const Arbeidsreise = 'arbeidsreiser';
+    const Besoeksreise = 'besoeksreiser';
     const UtgifterTilBomFergeEtc = 'utgifterBomFergeEtc';
 
-    const handleStateChange = (value, type) => {
-        if (type === Arbeidsreise) {
-            const newState = state.arbeidsreiser;
-            newState.push(value);
-            setState({ ...state, arbeidsreiser: newState });
-            console.log('Updated App state');
-        }
-
-        if (type === Besoeksreise) {
-            const newState = state.besoeksreiser;
-            newState.push(value);
-            setState({ ...state, besoeksreiser: newState });
-            console.log('Updated App state');
-        }
-
-        if (type === UtgifterTilBomFergeEtc) {
-            setState({ ...state, utgifterBomFergeEtc: value.utgifterBomFergeEtc });
-            console.log('Updated App state');
-        }
+    const initialState = {
+        arbeidsreiser: [{ id: 0, km: 0, antall: 0 }],
+        besoeksreiser: [{ id: 0, km: 0, antall: 0 }],
+        utgifterBomFergeEtc: 0
     };
+
+    const [state, setState] = useState(initialState);
+    const [reisefradrag, setReisefradrag] = useState();
+
+    const handleAddReise = (reisetype) => {
+        const newState = state[reisetype];
+        const newUniqueId = Math.max(...newState.map((x) => x.id)) + 1;
+        newState.push({ id: newUniqueId, km: 0, antall: 0 });
+        setState({ ...state, [reisetype]: newState });
+    };
+
+    const handleDelete = (id, reisetype) => {
+        const newState = state[reisetype];
+
+        if (newState.length <= 1) {
+            return;
+        }
+
+        const newStateFiltered = newState.filter((x) => x.id !== id);
+        setState({ ...state, [reisetype]: newStateFiltered });
+    };
+
+    const handleOnChange = (name, value, id, reisetype) => {
+        const indexToChange = state[reisetype].findIndex((x) => x.id == id);
+        const newState = state[reisetype];
+        newState[indexToChange][name] = value;
+        setState({ ...state, [reisetype]: newState });
+    };
+
+    const handleOnChangeExpenses = (event) => {
+        setState({ ...state, utgifterBomFergeEtc: event.target.value});
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -51,7 +55,7 @@ function App() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(state),
         };
-        const response = await fetch('https://localhost:5001/api/ReiseFradrag', requestOptions)
+        await fetch('https://localhost:5001/api/ReiseFradrag', requestOptions)
             .then(async (response) => {
                 const data = await response.json();
 
@@ -61,7 +65,7 @@ function App() {
                 }
 
                 setReisefradrag(data.reisefradrag);
-                setState(resetState);
+                setState(initialState);
             })
             .catch((error) => {
                 // handle error
@@ -71,42 +75,57 @@ function App() {
     return (
         <main className="App">
             <div className="wrapper">
-					<form onSubmit={handleSubmit}>
-						<Reise
-							id={`${Arbeidsreise}Id`}
-							onChange={handleStateChange}
-							type={Arbeidsreise}
-							tittel="Arbeidsreiser"
-						/>
-
-						<Reise
-							id={`${Besoeksreise}Id`}
-							onChange={handleStateChange}
-							type={Besoeksreise}
-							tittel="Besøksreiser"
-						/>
-
-						<Utgifter
-							id={`${UtgifterTilBomFergeEtc}Id`}
-							onChange={handleStateChange}
-							type={UtgifterTilBomFergeEtc}
-							tittel="Bom og ferge utgifter"
-						/>
-						<button type="submit" style={{ display: 'flex', margin: '20px auto 20px auto' }}>
-							Send inn
-						</button>
-					</form>
-            </div>
-			<div className="wrapper">
-				<Arbeidsreiser />
-			</div>
-            <div className="wrapper reisefradrag">
-                {reisefradrag && (
+                <div className="hr-bottom">
+                    <h2 className="hr-bottom">Registrer dine arbeidsreiser</h2>
+                    {state.arbeidsreiser.map((x) => (
+                        <Reise
+                            onChange={handleOnChange}
+                            handleDelete={handleDelete}
+                            key={x.id}
+                            id={x.id}
+                            km={x.km}
+                            antall={x.antall}
+                            reisetype={Arbeidsreise}
+                        />
+                    ))}
                     <div>
-                        <h3>Reisefradrag</h3>
-                        <p>{reisefradrag}</p>
+                        <IconButton aria-label="add" type="button" onClick={() => handleAddReise(Arbeidsreise)} style={{ marginRight: '10px' }}>
+                            <Icon>add_circle</Icon>
+                        </IconButton>
                     </div>
-                )}
+                </div>
+                <div className="hr-bottom">
+                    <h2 className="hr-bottom">Registrer dine besøksreiser</h2>
+                    {state.besoeksreiser.map((x) => (
+                        <Reise
+                            onChange={handleOnChange}
+                            handleDelete={handleDelete}
+                            key={x.id}
+                            id={x.id}
+                            km={x.km}
+                            antall={x.antall}
+                            reisetype={Besoeksreise}
+                        />
+                    ))}
+                    <div>
+                        <IconButton aria-label="add" type="button" onClick={() => handleAddReise(Besoeksreise)} style={{ marginRight: '10px' }}>
+                            <Icon>add_circle</Icon>
+                        </IconButton>
+                    </div>
+                </div>
+                <div>
+                    <Utgifter onChange={handleOnChangeExpenses} id={UtgifterTilBomFergeEtc} value={state.utgifterBomFergeEtc}/>
+                </div>
+                <button type="submit" onClick={handleSubmit}>Send inn</button>
+
+                <div className="reisefradrag">
+                    {reisefradrag && (
+                        <div>
+                            <h3>Reisefradrag</h3>
+                            <p>{reisefradrag}</p>
+                        </div>
+                    )}
+                </div>
             </div>
         </main>
     );
