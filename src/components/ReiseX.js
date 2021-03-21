@@ -13,13 +13,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const ReiseX = ({ id, onChange, type, handleDelete, antall, km }) => {
+export const ReiseX = ({ id, onChange, reisetype, handleDelete, antall, km }) => {
     const classes = useStyles();
-
-    const [state, setState] = useState({
-        km: 0,
-        antall: 0,
-    });
 
     const [error, setError] = useState({
         message: '',
