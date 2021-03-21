@@ -1,61 +1,26 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/DeleteOutlined';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-            width: '25ch',
-        },
-    },
-}));
-
 export const ReiseX = ({ id, onChange, reisetype, handleDelete, antall, km }) => {
-    const classes = useStyles();
-
-    const [error, setError] = useState({
-        message: '',
-    });
-
-    const resetState = {
-        km: 0,
-        antall: 0,
-    };
-
-    const resetErrors = {
-        message: '',
-    };
 
     const handleOnChange = (event) => {
-        onChange(event.target.name, event.target.value, id);
-    };
-
-    const validate = () => {
-        if (state.antall <= 0) {
-            setError({ message: 'Antall kan ikke være mindre enn eller lik 0.' });
-        }
-
-        if (state.km <= 0) {
-            setError({ message: 'Kilometer kan ikke være mindre enn eller lik 0.' });
-        }
-
-        if (state.antall > 0 && state.km > 0) {
-            setError(resetErrors);
-            return true;
-        }
+        onChange(event.target.name, event.target.value, id, reisetype);
     };
 
     const handleOnClick = () => {
-        handleDelete(id);
+        handleDelete(id, reisetype);
     };
 
     return (
-        <div style={{marginBottom: '15px'}}>
-            <div style={{ minWidth: '100%', height: '30px' }}>{error.message}</div>
-            <IconButton aria-label="delete" className={classes.margin} type="button" onClick={handleOnClick} style={{marginRight: '10px'}}>
+        <div style={{ marginBottom: '15px' }}>
+            <IconButton
+                aria-label="delete"
+                type="button"
+                onClick={handleOnClick}
+                style={{ marginRight: '10px' }}
+            >
                 <DeleteIcon />
             </IconButton>
             <TextField
@@ -75,7 +40,6 @@ export const ReiseX = ({ id, onChange, reisetype, handleDelete, antall, km }) =>
                 name="antall"
                 onChange={handleOnChange}
             />
-
         </div>
     );
 };
