@@ -58,6 +58,7 @@ function App() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setReisefradrag('');
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -83,7 +84,7 @@ function App() {
     };
 
     return (
-        <main className="App">
+        <main>
             <div className="wrapper">
                 <div>
                     <h2 className="hr-bottom">Registrer dine arbeidsreiser</h2>
@@ -149,37 +150,29 @@ function App() {
                     variant="contained"
                     color="secondary"
                     endIcon={<Icon>send</Icon>}
-                    style={{ margin: '30px 0 10px 0' }}
+                    style={{ display: 'flex', margin: '30px auto 10px auto', width: '572px' }}
                 >
                     Send inn
                 </Button>
 
                 {reisefradrag && reisefradrag > 1 && (
                     <div className="paper flex-text-center">
-                        <h3 style={{color: 'black'}}>Beregnet reisefradrag</h3>
-                        <p>Kr: {reisefradrag}</p>
+                        <h3 style={{ color: 'black' }}>Beregnet reisefradrag</h3>
+                        <p style={{fontSize: '40px'}}>Kr: {reisefradrag}</p>
                     </div>
                 )}
 
-                {reisefradrag && reisefradrag <= 0 && (
+                {(reisefradrag && reisefradrag <= 0 && (
                     <div className="paper flex-text-center">
-                        <h3 style={{color: 'black'}}>Beregnet reisefradrag</h3>
+                        <h3 style={{ color: 'black' }}>Beregnet reisefradrag</h3>
                         <p>Ut fra opplysningene du har gitt vil du vil ikke få noe reisefradrag.</p>
                     </div>
-                )}
-
-                {validationError.message.length > 0 && (
-                    <div>
-                        <div className="reisefradrag">
-                            <h3>Innsending feilet</h3>
-                            {validationError.message.map((x, index) => (
-                                <p key={index}>
-                                    {x.propertyName}: {x.errorMessage}
-                                </p>
-                            ))}
+                )) ||
+                    (validationError.message.length > 0 && (
+                        <div className="paper flex-text-center">
+                            <h3 style={{ color: 'black' }}>Fyll ut feltene før innsending</h3>
                         </div>
-                    </div>
-                )}
+                    ))}
             </div>
         </main>
     );

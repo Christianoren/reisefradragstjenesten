@@ -1,14 +1,13 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     width: 600px;
     border: 1px solid black;
     padding: 10px;
     background-color: #292929;
     border-radius : 3px;
     box-shadow: 0px 0px 8px -5px #000;
-    margin: 25px;
+    margin: auto;
 }
 
 .paper {
@@ -37,8 +36,9 @@
     margin-right: 5px;
 }
 
-button {
-    background-color: white;
+.hr-bottom {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.739);
 }
 
 h2 {
@@ -50,32 +50,6 @@ h2 {
 
 h2, h3 {
     color:#fff;
-}
-
-form {
-    margin: auto;
-    justify-content: space-between;
-}
-
-label {
-    color: #000;
-}
-
-.hr-bottom {
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.739);
-}
-
-.MuiFormLabel-root.Mui-focused {
-    color: crimson !important;
-}
-
-.reisefradrag {
-    display: flex;
-    min-height: 100px;
-    background-color: cadetblue;
-    justify-content: center;
-    text-align: center;
 }
 
 body {

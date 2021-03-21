@@ -43,7 +43,7 @@ export const Reise = ({ id, onChange, reisetype, handleDelete, antall, km }) => 
                 name="km"
                 color="secondary"
                 onChange={handleOnChange}
-                style={{ marginRight: '20px'}}
+                style={{ marginRight: '10px'}}
             />
             <TextField
                 id="standard-basic"
