@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const ReiseX = ({ id, onChange, type, tittel, handleDelete, index }) => {
+export const ReiseX = ({ id, onChange, type, handleDelete, antall, km }) => {
     const classes = useStyles();
 
     const [state, setState] = useState({
@@ -35,7 +35,6 @@ export const ReiseX = ({ id, onChange, type, tittel, handleDelete, index }) => {
     };
 
     const handleOnChange = (event) => {
-        setState({ ...state, ...{ [event.target.name]: event.target.value } });
         onChange(event.target.name, event.target.value, id);
     };
 
@@ -55,14 +54,6 @@ export const ReiseX = ({ id, onChange, type, tittel, handleDelete, index }) => {
     };
 
     const handleOnClick = () => {
-        // const isValid = validate();
-        // if (!isValid) {
-        //     return;
-        // }
-
-        // onChange(state, type);
-        // setState(resetState);
-
         handleDelete(id);
     };
 
@@ -75,7 +66,7 @@ export const ReiseX = ({ id, onChange, type, tittel, handleDelete, index }) => {
             <TextField
                 id="standard-basic"
                 label="Kilometer"
-                value={state.km}
+                value={km}
                 type="number"
                 name="km"
                 onChange={handleOnChange}
@@ -84,7 +75,7 @@ export const ReiseX = ({ id, onChange, type, tittel, handleDelete, index }) => {
             <TextField
                 id="standard-basic"
                 label="Antall"
-                value={state.antall}
+                value={antall}
                 type="number"
                 name="antall"
                 onChange={handleOnChange}
