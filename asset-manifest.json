@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/reisefradragstjenesten/tree/release/github-pages/static/css/main.85e0cb08.chunk.css",
-    "main.js": "/reisefradragstjenesten/tree/release/github-pages/static/js/main.c8ea4787.chunk.js",
-    "main.js.map": "/reisefradragstjenesten/tree/release/github-pages/static/js/main.c8ea4787.chunk.js.map",
-    "runtime-main.js": "/reisefradragstjenesten/tree/release/github-pages/static/js/runtime-main.d5022e99.js",
-    "runtime-main.js.map": "/reisefradragstjenesten/tree/release/github-pages/static/js/runtime-main.d5022e99.js.map",
-    "static/js/2.0d0270b3.chunk.js": "/reisefradragstjenesten/tree/release/github-pages/static/js/2.0d0270b3.chunk.js",
-    "static/js/2.0d0270b3.chunk.js.map": "/reisefradragstjenesten/tree/release/github-pages/static/js/2.0d0270b3.chunk.js.map",
-    "index.html": "/reisefradragstjenesten/tree/release/github-pages/index.html",
-    "static/css/main.85e0cb08.chunk.css.map": "/reisefradragstjenesten/tree/release/github-pages/static/css/main.85e0cb08.chunk.css.map",
-    "static/js/2.0d0270b3.chunk.js.LICENSE.txt": "/reisefradragstjenesten/tree/release/github-pages/static/js/2.0d0270b3.chunk.js.LICENSE.txt"
+    "main.css": "/reisefradragstjenesten/static/css/main.85e0cb08.chunk.css",
+    "main.js": "/reisefradragstjenesten/static/js/main.c8ea4787.chunk.js",
+    "main.js.map": "/reisefradragstjenesten/static/js/main.c8ea4787.chunk.js.map",
+    "runtime-main.js": "/reisefradragstjenesten/static/js/runtime-main.9741ce5d.js",
+    "runtime-main.js.map": "/reisefradragstjenesten/static/js/runtime-main.9741ce5d.js.map",
+    "static/js/2.0d0270b3.chunk.js": "/reisefradragstjenesten/static/js/2.0d0270b3.chunk.js",
+    "static/js/2.0d0270b3.chunk.js.map": "/reisefradragstjenesten/static/js/2.0d0270b3.chunk.js.map",
+    "index.html": "/reisefradragstjenesten/index.html",
+    "static/css/main.85e0cb08.chunk.css.map": "/reisefradragstjenesten/static/css/main.85e0cb08.chunk.css.map",
+    "static/js/2.0d0270b3.chunk.js.LICENSE.txt": "/reisefradragstjenesten/static/js/2.0d0270b3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.d5022e99.js",
+    "static/js/runtime-main.9741ce5d.js",
     "static/js/2.0d0270b3.chunk.js",
     "static/css/main.85e0cb08.chunk.css",
     "static/js/main.c8ea4787.chunk.js"
