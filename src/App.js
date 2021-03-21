@@ -14,11 +14,18 @@ function App() {
     const initialState = {
         arbeidsreiser: [{ id: 0, km: 0, antall: 0 }],
         besoeksreiser: [{ id: 0, km: 0, antall: 0 }],
-        utgifterBomFergeEtc: 0
+        utgifterBomFergeEtc: 0,
+    };
+
+    const initialErrorState = {
+        message: [],
     };
 
     const [state, setState] = useState(initialState);
     const [reisefradrag, setReisefradrag] = useState();
+    const [validationError, setError] = useState({
+        message: [],
+    });
 
     const handleAddReise = (reisetype) => {
         const newState = state[reisetype];
@@ -46,8 +53,8 @@ function App() {
     };
 
     const handleOnChangeExpenses = (event) => {
-        setState({ ...state, utgifterBomFergeEtc: event.target.value});
-    }
+        setState({ ...state, utgifterBomFergeEtc: event.target.value });
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -62,11 +69,13 @@ function App() {
 
                 if (!response.ok) {
                     const error = (data && data.message) || response.status;
+                    setError({ message: data.errors });
                     return Promise.reject(error);
                 }
 
                 setReisefradrag(data.reisefradrag);
                 setState(initialState);
+                setError(initialErrorState);
             })
             .catch((error) => {
                 // handle error
