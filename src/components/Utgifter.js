@@ -10,6 +10,7 @@ export const Utgifter = ({ onChange, value }) => {
                 value={value}
                 type="number"
                 name="utgifter"
+                color="secondary"
                 onChange={onChange}
                 style={{ marginRight: '20px' }}
             />

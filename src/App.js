@@ -104,7 +104,7 @@ function App() {
                             type="button"
                             color="secondary"
                             onClick={() => handleAddReise(Arbeidsreise)}
-                            style={{ marginRight: '10px' }}
+                            style={{ margin: '0 0 0 45px' }}
                         >
                             <Icon>add_circle</Icon>
                         </IconButton>
@@ -129,7 +129,7 @@ function App() {
                             type="button"
                             color="secondary"
                             onClick={() => handleAddReise(Besoeksreise)}
-                            style={{ marginRight: '10px' }}
+                            style={{ margin: '0 0 0 45px' }}
                         >
                             <Icon>add_circle</Icon>
                         </IconButton>
@@ -149,15 +149,22 @@ function App() {
                     variant="contained"
                     color="secondary"
                     endIcon={<Icon>send</Icon>}
-                    style={{ marginTop: '50px' }}
+                    style={{ margin: '30px 0 10px 0' }}
                 >
                     Send inn
                 </Button>
 
-                {reisefradrag && (
+                {reisefradrag && reisefradrag > 1 && (
                     <div className="paper flex-text-center">
-                        <h3>Ditt reisefradrag</h3>
-                        <p>{reisefradrag}</p>
+                        <h3 style={{color: 'black'}}>Beregnet reisefradrag</h3>
+                        <p>Kr: {reisefradrag}</p>
+                    </div>
+                )}
+
+                {reisefradrag && reisefradrag <= 0 && (
+                    <div className="paper flex-text-center">
+                        <h3 style={{color: 'black'}}>Beregnet reisefradrag</h3>
+                        <p>Ut fra opplysningene du har gitt vil du vil ikke få noe reisefradrag.</p>
                     </div>
                 )}
 

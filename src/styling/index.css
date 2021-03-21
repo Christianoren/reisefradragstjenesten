@@ -48,7 +48,7 @@ h2 {
     margin-right: 20px;
 }
 
-p, h2, h3 {
+h2, h3 {
     color:#fff;
 }
 
@@ -64,6 +64,10 @@ label {
 .hr-bottom {
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.739);
+}
+
+.MuiFormLabel-root.Mui-focused {
+    color: crimson !important;
 }
 
 .reisefradrag {
