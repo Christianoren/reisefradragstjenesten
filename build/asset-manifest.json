@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/reisefradragstjenesten/static/css/main.85e0cb08.chunk.css",
+    "main.js": "/reisefradragstjenesten/static/js/main.c8ea4787.chunk.js",
+    "main.js.map": "/reisefradragstjenesten/static/js/main.c8ea4787.chunk.js.map",
+    "runtime-main.js": "/reisefradragstjenesten/static/js/runtime-main.9741ce5d.js",
+    "runtime-main.js.map": "/reisefradragstjenesten/static/js/runtime-main.9741ce5d.js.map",
+    "static/js/2.0d0270b3.chunk.js": "/reisefradragstjenesten/static/js/2.0d0270b3.chunk.js",
+    "static/js/2.0d0270b3.chunk.js.map": "/reisefradragstjenesten/static/js/2.0d0270b3.chunk.js.map",
+    "index.html": "/reisefradragstjenesten/index.html",
+    "static/css/main.85e0cb08.chunk.css.map": "/reisefradragstjenesten/static/css/main.85e0cb08.chunk.css.map",
+    "static/js/2.0d0270b3.chunk.js.LICENSE.txt": "/reisefradragstjenesten/static/js/2.0d0270b3.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9741ce5d.js",
+    "static/js/2.0d0270b3.chunk.js",
+    "static/css/main.85e0cb08.chunk.css",
+    "static/js/main.c8ea4787.chunk.js"
+  ]
+}
