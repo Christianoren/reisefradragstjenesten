@@ -64,7 +64,7 @@ function App() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(state),
         };
-        await fetch('https://localhost:5001/api/ReiseFradrag', requestOptions)
+        await fetch('https://reisefradragapi20210321164903.azurewebsites.net/api/ReiseFradrag', requestOptions)
             .then(async (response) => {
                 const data = await response.json();
 
