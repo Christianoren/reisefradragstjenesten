@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 
 export const Utgifter = ({ onChange, value }) => {
     return (
-        <div style={{ margin: '20px 0 15px 55px'}}>
+        <div className="paper" style={{ margin: '20px 0 15px 20px'}}>
             <TextField
                 id="standard-basic"
                 label="Utgifter"

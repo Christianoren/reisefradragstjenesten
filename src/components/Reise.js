@@ -14,11 +14,12 @@ export const Reise = ({ id, onChange, reisetype, handleDelete, antall, km }) => 
     };
 
     return (
-        <div style={{ marginBottom: '15px' }}>
+        <div className="paper" style={{ marginBottom: '15px' }}>
             <IconButton
                 aria-label="delete"
                 type="button"
                 onClick={handleOnClick}
+                color="secondary"
                 style={{ marginRight: '10px' }}
             >
                 <DeleteIcon />
@@ -30,7 +31,7 @@ export const Reise = ({ id, onChange, reisetype, handleDelete, antall, km }) => 
                 type="number"
                 name="km"
                 onChange={handleOnChange}
-                style={{ marginRight: '20px' }}
+                style={{ marginRight: '20px'}}
             />
             <TextField
                 id="standard-basic"

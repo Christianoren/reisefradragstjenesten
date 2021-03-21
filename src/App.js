@@ -75,7 +75,7 @@ function App() {
     return (
         <main className="App">
             <div className="wrapper">
-                <div className="hr-bottom">
+                <div>
                     <h2 className="hr-bottom">Registrer dine arbeidsreiser</h2>
                     {state.arbeidsreiser.map((x) => (
                         <Reise
@@ -89,12 +89,18 @@ function App() {
                         />
                     ))}
                     <div>
-                        <IconButton aria-label="add" type="button" onClick={() => handleAddReise(Arbeidsreise)} style={{ marginRight: '10px' }}>
+                        <IconButton
+                            aria-label="add"
+                            type="button"
+                            color="secondary"
+                            onClick={() => handleAddReise(Arbeidsreise)}
+                            style={{ marginRight: '10px' }}
+                        >
                             <Icon>add_circle</Icon>
                         </IconButton>
                     </div>
                 </div>
-                <div className="hr-bottom">
+                <div>
                     <h2 className="hr-bottom">Registrer dine besøksreiser</h2>
                     {state.besoeksreiser.map((x) => (
                         <Reise
@@ -108,24 +114,55 @@ function App() {
                         />
                     ))}
                     <div>
-                        <IconButton aria-label="add" type="button" onClick={() => handleAddReise(Besoeksreise)} style={{ marginRight: '10px' }}>
+                        <IconButton
+                            aria-label="add"
+                            type="button"
+                            color="secondary"
+                            onClick={() => handleAddReise(Besoeksreise)}
+                            style={{ marginRight: '10px' }}
+                        >
                             <Icon>add_circle</Icon>
                         </IconButton>
                     </div>
                 </div>
                 <div>
-                    <Utgifter onChange={handleOnChangeExpenses} id={UtgifterTilBomFergeEtc} value={state.utgifterBomFergeEtc}/>
+                    <h2 className="hr-bottom">Registrer dine utgifter</h2>
+                    <Utgifter
+                        onChange={handleOnChangeExpenses}
+                        id={UtgifterTilBomFergeEtc}
+                        value={state.utgifterBomFergeEtc}
+                    />
                 </div>
-                <button type="submit" onClick={handleSubmit}>Send inn</button>
+                <Button
+                    type="submit"
+                    onClick={handleSubmit}
+                    variant="contained"
+                    color="secondary"
+                    endIcon={<Icon>send</Icon>}
+                    style={{ marginTop: '50px' }}
+                >
+                    Send inn
+                </Button>
 
-                <div className="reisefradrag">
-                    {reisefradrag && (
-                        <div>
-                            <h3>Reisefradrag</h3>
-                            <p>{reisefradrag}</p>
+                {reisefradrag && (
+                    <div className="paper flex-text-center">
+                        <h3>Ditt reisefradrag</h3>
+                        <p>{reisefradrag}</p>
+                    </div>
+                )}
+
+                {validationError.message.length > 0 && (
+                    <div>
+                        <div className="reisefradrag">
+                            <h3>Innsending feilet</h3>
+                            {validationError.message.map((x, index) => (
+                                <p key={index}>
+                                    {x.propertyName}: {x.errorMessage}
+                                </p>
+                            ))}
                         </div>
-                    )}
-                </div>
+                    </div>
+                )}
             </div>
         </main>
     );
