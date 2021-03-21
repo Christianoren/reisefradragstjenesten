@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Reise } from './components/Reise';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import { Utgifter } from './components/Utgifter';
 import './styling/index.css';
 
